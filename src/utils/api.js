@@ -13,7 +13,7 @@ async function fetchWithToken(url, options = {}) {
     ...options,
     headers: {
       ...options.headers,
-      Authorization: `Bearer ${getAccessToken}`,
+      Authorization: `Bearer ${getAccessToken()}`,
     },
   });
 }
@@ -31,10 +31,10 @@ async function login({ email, password }) {
 
   if (responseJson.status !== "success") {
     alert(responseJson.message);
-    return { Error: true, data: null };
+    return { error: true, data: null };
   }
 
-  return { Error: false, data: responseJson.data };
+  return { error: false, data: responseJson.data };
 }
 
 async function register({ name, email, password }) {
